@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulletinBoardApi", "BulletinBoardApi\BulletinBoardApi.csproj", "{AA72B68F-74F8-476E-9762-8DEF3A24E769}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulletinBoardWeb", "BulletinBoardWeb\BulletinBoardWeb.csproj", "{2EC26755-3485-4965-9E68-18B2574942BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA72B68F-74F8-476E-9762-8DEF3A24E769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA72B68F-74F8-476E-9762-8DEF3A24E769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA72B68F-74F8-476E-9762-8DEF3A24E769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA72B68F-74F8-476E-9762-8DEF3A24E769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EC26755-3485-4965-9E68-18B2574942BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EC26755-3485-4965-9E68-18B2574942BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EC26755-3485-4965-9E68-18B2574942BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EC26755-3485-4965-9E68-18B2574942BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C7DB956-E304-4F72-A5F2-CC21A4F282D4}
+	EndGlobalSection
+EndGlobal

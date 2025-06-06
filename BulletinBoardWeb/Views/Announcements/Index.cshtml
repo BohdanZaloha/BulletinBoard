@@ -1,0 +1,48 @@
+﻿@model List<Announcement>
+<br/>
+<div class="container p-4 border">
+    <div class="row pb-2">
+
+        <div class="col">
+            <h1 class="text-primary">Announcements</h1>
+        </div>
+
+        <div class="col text-end p1-1">
+            <a asp-controller="Announcements" asp-action="Create" class="btn btn-primary"> New announcement</a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>CreatedDate</th>
+                <th>Status</th>
+                <th>CategoryId</th>
+                <th>SubCategoryId</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@item.CreatedDate.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Status</td>
+                    <td>@item.CategoryId</td>
+                    <td>@item.SubCategoryId</td>
+                    <td>
+                        <a asp-controller="Announcements" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">Edit</a>
+                        <a asp-controller="Announcements" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    <a asp-controller="Announcements" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
