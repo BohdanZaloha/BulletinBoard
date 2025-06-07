@@ -68,7 +68,6 @@ namespace BulletinBoardWeb.Controllers
         /// </summary>
         public async Task<IActionResult> Index(int? categoryId, int? subCategoryId)
         {
-            // 1) Отримуємо всі оголошення з API
             List<Announcement> announcements = new();
             using (var _httpClient = new HttpClient())
             {
@@ -84,12 +83,10 @@ namespace BulletinBoardWeb.Controllers
                 }
                 else
                 {
-                    // Якщо помилка звернення до API
                     return View("ErrorPage");
                 }
             }
 
-            // 2) Якщо передано categoryId, відфільтровуємо список оголошень
             if (categoryId.HasValue && categoryId.Value > 0)
             {
                 announcements = announcements
@@ -97,7 +94,6 @@ namespace BulletinBoardWeb.Controllers
                     .ToList();
             }
 
-            // 3) Якщо передано subCategoryId, фільтруємо далі
             if (subCategoryId.HasValue && subCategoryId.Value > 0)
             {
                 announcements = announcements
@@ -253,7 +249,6 @@ namespace BulletinBoardWeb.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // if binding failed (e.g. missing or invalid Id), redirect back to confirmation
                 return RedirectToAction(nameof(Delete), new { Id });
             }
 
