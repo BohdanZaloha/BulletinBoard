@@ -12,6 +12,8 @@ namespace BulletinBoardApi
 
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddScoped<IAnnouncementRepository, AnnouncementRepository>();
+            builder.Services.AddScoped<ISubCategoryRepository, SubCategoryRepository>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddDbContext<BulletinBoardDbContext>(options => options.UseSqlServer(connectionString));
             // Add services to the container.
 

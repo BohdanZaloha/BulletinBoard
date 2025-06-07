@@ -55,14 +55,16 @@ namespace BulletinBoardApi.Data
             {
                 announcement = new Announcement()
                {
-                   Id = reader.GetInt32(0),
-                   Title = reader.GetString(1),
-                   Description = reader.GetString(2),
-                   CreatedDate = reader.GetDateTime(3),
-                   Status = reader.GetBoolean(4),
-                   CategoryId = reader.GetInt32(5),
-                   SubCategoryId = reader.GetInt32(6)
-               };
+                    Id = (int)reader["Id"],
+                    Title = reader["Title"].ToString()!,
+                    Description = reader["Description"] as string,
+                    CreatedDate = (DateTime)reader["CreatedDate"],
+                    Status = (bool)reader["Status"],
+                    CategoryId = (int)reader["CategoryId"],
+                    SubCategoryId = (int)reader["SubCategoryId"],
+                    CategoryName = reader["CategoryName"].ToString().Trim(),
+                    SubCategoryName = reader["SubCategoryName"].ToString().Trim()
+                };
             }
             return announcement;
         }
@@ -82,13 +84,15 @@ namespace BulletinBoardApi.Data
             {
                 announcements.Add( new Announcement()
                 {
-                    Id = reader.GetInt32(0),
-                    Title = reader.GetString(1),
-                    Description = reader.GetString(2),
-                    CreatedDate = reader.GetDateTime(3),
-                    Status = reader.GetBoolean(4),
-                    CategoryId = reader.GetInt32(5),
-                    SubCategoryId = reader.GetInt32(6)
+                    Id = (int)reader["Id"],
+                    Title = reader["Title"].ToString()!,
+                    Description = reader["Description"] as string,
+                    CreatedDate = (DateTime)reader["CreatedDate"],
+                    Status = (bool)reader["Status"],
+                    CategoryId = (int)reader["CategoryId"],
+                    SubCategoryId = (int)reader["SubCategoryId"],
+                    CategoryName = reader["CategoryName"].ToString().Trim(),
+                    SubCategoryName = reader["SubCategoryName"].ToString().Trim()
                 });
             }
             return announcements;
