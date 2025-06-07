@@ -22,11 +22,8 @@ namespace BulletinBoardWeb.Models
         [Required]
         public int SubCategoryId { get; set; }
 
-        [ForeignKey(nameof(CategoryId))]
-        public Category? Category { get; set; }
-
-        [ForeignKey(nameof(SubCategoryId))]
-        public SubCategory? SubCategory { get; set; }
+        public string? CategoryName { get; set; }
+        public string? SubCategoryName { get; set; }
 
     }
 }

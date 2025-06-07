@@ -28,7 +28,7 @@ namespace BulletinBoardWeb
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Announcements}/{action=Index}/{id?}");
 
             app.Run();
         }

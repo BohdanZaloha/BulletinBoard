@@ -11,7 +11,38 @@
             <a asp-controller="Announcements" asp-action="Create" class="btn btn-primary"> New announcement</a>
         </div>
     </div>
-    <table class="table">
+
+    <form asp-action="Index" method="get" class="form-inline" style="margin-bottom:20px;">
+        <div class="form-group mr-3">
+            <label for="categoryId" class="mr-2">Category:</label>
+            @Html.DropDownList(
+                     "categoryId",
+                     (SelectList)ViewBag.CategoryList,
+                     "All Categories",
+                     new
+                     {
+                         @class = "form-control",
+                         onchange = "this.form.submit();"
+                     }
+                     )
+        </div>
+
+        <div class="form-group">
+            <label for="subCategoryId" class="mr-2">SubCategory:</label>
+            @Html.DropDownList(
+                     "subCategoryId",
+                     (SelectList)ViewBag.SubCategoryList,
+                     "all SubCategories",
+                     new
+                     {
+                         @class = "form-control",
+                         onchange = "this.form.submit();"
+                     }
+                     )
+        </div>
+    </form>
+
+    <table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>Id</th>
@@ -19,28 +50,47 @@
                 <th>Description</th>
                 <th>CreatedDate</th>
                 <th>Status</th>
-                <th>CategoryId</th>
-                <th>SubCategoryId</th>
+                <th>Category</th>
+                <th>SubCategory</th>
+                <th>Actions</th>
                 
             </tr>
         </thead>
         <tbody>
-            @foreach(var item in Model)
+            @if (!Model.Any())
             {
                 <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Title</td>
-                    <td>@item.Description</td>
-                    <td>@item.CreatedDate.ToString("MM/dd/yyyy")</td>
-                    <td>@item.Status</td>
-                    <td>@item.CategoryId</td>
-                    <td>@item.SubCategoryId</td>
-                    <td>
-                        <a asp-controller="Announcements" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">Edit</a>
-                        <a asp-controller="Announcements" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
-                    <a asp-controller="Announcements" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
-                    </td>
+                    <td colspan="8" class="text-center">No Announcements found</td>
                 </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Title</td>
+                        <td style="max-width:200px; word-wrap:break-word;">@item.Description</td>
+                        <td>@item.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>
+                            @if (item.Status)
+                            {
+                                <span class="badge badge-success text-black">Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-secondary text-black">NotActive</span>
+                            }
+                        </td>
+                        <td>@item.CategoryName</td>
+                        <td>@item.SubCategoryName</td>
+                        <td>
+                            <a asp-action="Details" asp-route-Id="@item.Id" class="btn btn-info btn-sm">Details</a>
+
+                            <a asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
             }
         </tbody>
     </table>

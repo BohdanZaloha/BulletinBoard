@@ -25,7 +25,7 @@
                 <label asp-for="Status" class="control-label pt-2" style="font-size:14px;"></label>
             </div>
             <div class="col-10 pb-3">
-                <input asp-for="Status" class="form-control" readonly />
+                <input class="form-control" type="text" readonly value="@(Model.Status ? "Active" : "Not Active")" />
             </div>
 
             <div class="col-2">
