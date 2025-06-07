@@ -4,11 +4,18 @@ using System.Data;
 
 namespace BulletinBoardApi.Data
 {
+    /// <summary>
+    /// Repository implementation for managing <see cref="SubCategory"/> entities
+    /// via stored procedures in the SQL database.
+    /// </summary>
     public class SubCategoryRepository(IConfiguration config) : ISubCategoryRepository
     {
-        private string connectionString = config.GetConnectionString("DefaultConnection");
+        private readonly string connectionString = config.GetConnectionString("DefaultConnection");
 
-        async  Task<IEnumerable<SubCategory>> ISubCategoryRepository.GetAllSubCategoriesAsync()
+        /// <summary>
+        /// Retrieves all SubCategories from the database.
+        /// </summary>
+        async Task<IEnumerable<SubCategory>> ISubCategoryRepository.GetAllSubCategoriesAsync()
         {
             var subCategories = new List<SubCategory>();
             using var connection = new SqlConnection(connectionString);
@@ -31,7 +38,10 @@ namespace BulletinBoardApi.Data
             return subCategories;
         }
 
-        async  Task<IEnumerable<SubCategory>> ISubCategoryRepository.GetSubCategoriesByCategoryIdAsync(int categoryId)
+        /// <summary>
+        /// Retrieves SubCategory By Id from the database.
+        /// </summary>
+        async Task<IEnumerable<SubCategory>> ISubCategoryRepository.GetSubCategoriesByCategoryIdAsync(int categoryId)
         {
             var subCategories = new List<SubCategory>();
             using var connection = new SqlConnection(connectionString);

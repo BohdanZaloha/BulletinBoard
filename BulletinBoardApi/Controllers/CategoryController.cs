@@ -2,15 +2,19 @@
 using BulletinBoardApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace BulletinBoardApi.Controllers
 {
+
+    /// <summary>
+    /// Provides endpoints to retrieve <see cref="Category"/> entities.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController(ICategoryRepository _repository) : ControllerBase
     {
-
+        /// <summary>
+        /// Retrieves all categories.
+        /// </summary>
         [HttpGet("GetCategories")]
         public async Task<IActionResult> GetAll()
         {

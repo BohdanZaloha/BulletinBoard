@@ -7,11 +7,17 @@ using System.Data.Common;
 
 namespace BulletinBoardApi.Data
 {
+    /// <summary>
+    /// Repository implementation for managing <see cref="Announcement"/> entities
+    /// via stored procedures in the SQL database.
+    /// </summary>
     public class AnnouncementRepository(IConfiguration config): IAnnouncementRepository
     {
-        private string connectionString = config.GetConnectionString("DefaultConnection");
-       // private readonly BulletinBoardDbContext _context;
+        private readonly string connectionString = config.GetConnectionString("DefaultConnection");
 
+        /// <summary>
+        /// Inserts a new announcement into the database.
+        /// </summary>
         public async Task CreateAnnouncementAsync(Announcement announcement)
         {
             using var connection = new SqlConnection(connectionString);
@@ -28,6 +34,9 @@ namespace BulletinBoardApi.Data
             await command.ExecuteNonQueryAsync();
         }
 
+        /// <summary>
+        /// Removes an existing announcement by its identifier.
+        /// </summary>
         public async Task DeleteAnnouncementAsync(int id)
         {
             using var connection = new SqlConnection(connectionString);
@@ -40,6 +49,9 @@ namespace BulletinBoardApi.Data
             await command.ExecuteNonQueryAsync();
         }
 
+        /// <summary>
+        /// Retrieves a single announcement by its identifier.
+        /// </summary>
         public async Task<Announcement> GetAnnouncementByIdAsync(int id)
         {
             using var connection = new SqlConnection(connectionString);
@@ -69,6 +81,9 @@ namespace BulletinBoardApi.Data
             return announcement;
         }
 
+        /// <summary>
+        /// Retrieves all announcements from the database.
+        /// </summary>
         public async Task<IEnumerable<Announcement>> GetAnnouncementsAsync()
         {
             var announcements = new List<Announcement>();
@@ -99,6 +114,9 @@ namespace BulletinBoardApi.Data
 
         }
 
+        /// <summary>
+        /// Updates an existing announcement in the database.
+        /// </summary>
         public async Task UpdateAnnouncementAsync(Announcement announcement)
         {
             using var connection = new SqlConnection(connectionString);

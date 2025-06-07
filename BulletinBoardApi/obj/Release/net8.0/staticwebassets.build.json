@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "PG2BJednf5HjN8j2NtFUkZuF7Sc2pdeBsqUScF6+4ew=",
+  "Source": "BulletinBoardApi",
+  "BasePath": "_content/BulletinBoardApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

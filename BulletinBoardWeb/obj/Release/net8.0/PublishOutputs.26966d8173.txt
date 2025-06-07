@@ -1,0 +1,11 @@
+F:\visual2022rep\BulletinBoardApi\BulletinBoardWeb\obj\Release\net8.0\PubTmp\Out\BulletinBoardWeb.exe
+F:\visual2022rep\BulletinBoardApi\BulletinBoardWeb\obj\Release\net8.0\PubTmp\Out\appsettings.Development.json
+F:\visual2022rep\BulletinBoardApi\BulletinBoardWeb\obj\Release\net8.0\PubTmp\Out\appsettings.json
+F:\visual2022rep\BulletinBoardApi\BulletinBoardWeb\obj\Release\net8.0\PubTmp\Out\BulletinBoardWeb.dll
+F:\visual2022rep\BulletinBoardApi\BulletinBoardWeb\obj\Release\net8.0\PubTmp\Out\BulletinBoardWeb.deps.json
+F:\visual2022rep\BulletinBoardApi\BulletinBoardWeb\obj\Release\net8.0\PubTmp\Out\BulletinBoardWeb.runtimeconfig.json
+F:\visual2022rep\BulletinBoardApi\BulletinBoardWeb\obj\Release\net8.0\PubTmp\Out\BulletinBoardWeb.pdb
+F:\visual2022rep\BulletinBoardApi\BulletinBoardWeb\obj\Release\net8.0\PubTmp\Out\Microsoft.AspNetCore.JsonPatch.dll
+F:\visual2022rep\BulletinBoardApi\BulletinBoardWeb\obj\Release\net8.0\PubTmp\Out\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+F:\visual2022rep\BulletinBoardApi\BulletinBoardWeb\obj\Release\net8.0\PubTmp\Out\Newtonsoft.Json.dll
+F:\visual2022rep\BulletinBoardApi\BulletinBoardWeb\obj\Release\net8.0\PubTmp\Out\Newtonsoft.Json.Bson.dll

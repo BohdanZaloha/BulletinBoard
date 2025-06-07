@@ -5,10 +5,18 @@ using System.Data;
 
 namespace BulletinBoardApi.Data
 {
-    public  class CategoryRepository(IConfiguration config): ICategoryRepository
+    /// <summary>
+    /// Repository implementation for managing <see cref="Category"/> entities
+    /// via stored procedures in the SQL database.
+    /// </summary>
+    public class CategoryRepository(IConfiguration config): ICategoryRepository
     {
-        private string connectionString = config.GetConnectionString("DefaultConnection");
-       async Task<IEnumerable<Category>> ICategoryRepository.GetAllCategoriesAsync()
+        private readonly string connectionString = config.GetConnectionString("DefaultConnection");
+        
+        /// <summary>
+        /// Retrieves all categories from the database.
+        /// </summary>
+        async Task<IEnumerable<Category>> ICategoryRepository.GetAllCategoriesAsync()
         {
            
             var categories = new List<Category>();
@@ -19,7 +27,6 @@ namespace BulletinBoardApi.Data
             };
             await connection.OpenAsync();
             using var reader = await command.ExecuteReaderAsync();
-            Category category = new Category();
             while (await reader.ReadAsync())
             {
                 categories.Add(new Category()
