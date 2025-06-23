@@ -1,0 +1,155 @@
+CREATE TABLE Categories (
+    CategoryId INT PRIMARY KEY,
+    Name NVARCHAR(200) NOT NULL
+);
+
+CREATE TABLE SubCategories (
+    SubCategoryId INT PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    CategoryId INT NOT NULL,
+    FOREIGN KEY (CategoryId) REFERENCES Categories(CategoryId)
+);
+
+CREATE TABLE Announcements (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Title NVARCHAR(200) NOT NULL,
+    Description NVARCHAR(MAX) NOT NULL,
+    CreatedDate DATETIME NOT NULL DEFAULT GETDATE(),
+    Status BIT NOT NULL,
+    CategoryId INT NOT NULL,
+    SubCategoryId INT NOT NULL,
+    FOREIGN KEY (CategoryId) REFERENCES Categories(CategoryId),
+    FOREIGN KEY (SubCategoryId) REFERENCES SubCategories(SubCategoryId)
+);
+
+STORED PROCEDURES
+
+CREATE PROCEDURE dbo.AddAnnouncement
+    @Title         NVARCHAR(200),
+    @Description   NVARCHAR(MAX),
+    @Status        BIT,
+    @CategoryId    INT,
+    @SubCategoryId INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.Announcements
+        (Title, Description, Status, CategoryId, SubCategoryId)
+    VALUES
+        (@Title, @Description, @Status, @CategoryId, @SubCategoryId);
+END;
+
+CREATE PROCEDURE dbo.DeleteAnnouncementById
+    @Id INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM dbo.Announcements
+    WHERE Id = @Id;
+END;
+
+CREATE PROCEDURE dbo.GetAllAnnouncements
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        a.Id,
+        a.Title,
+        a.Description,
+        a.CreatedDate,
+        a.Status,
+        a.CategoryId,
+        c.Name         AS CategoryName,
+        a.SubCategoryId,
+        sc.Name        AS SubCategoryName
+    FROM dbo.Announcements AS a
+    INNER JOIN dbo.Categories     AS c  ON a.CategoryId    = c.CategoryId
+    INNER JOIN dbo.SubCategories AS sc  ON a.SubCategoryId = sc.SubCategoryId
+    ORDER BY a.CreatedDate DESC;
+END;
+
+CREATE PROCEDURE dbo.GetAllCategories
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        CategoryId,
+        Name
+    FROM dbo.Categories
+    ORDER BY Name;
+END;
+
+CREATE PROCEDURE dbo.GetAllSubCategories
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        SubCategoryId,
+        CategoryId,
+        Name
+    FROM dbo.SubCategories
+    ORDER BY Name;
+END;
+
+CREATE PROCEDURE dbo.GetAnnouncementById
+    @Id INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        a.Id,
+        a.Title,
+        a.Description,
+        a.CreatedDate,
+        a.Status,
+        a.CategoryId,
+        c.Name        AS CategoryName,
+        a.SubCategoryId,
+        sc.Name       AS SubCategoryName
+    FROM dbo.Announcements AS a
+    INNER JOIN dbo.Categories     AS c  ON a.CategoryId    = c.CategoryId
+    INNER JOIN dbo.SubCategories AS sc ON a.SubCategoryId = sc.SubCategoryId
+    WHERE a.Id = @Id;
+END;
+
+CREATE PROCEDURE dbo.GetSubCategoriesByCategoryId
+    @CategoryId INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        SubCategoryId,
+        CategoryId,
+        Name
+    FROM dbo.SubCategories
+    WHERE CategoryId = @CategoryId
+    ORDER BY Name;
+END;
+
+CREATE PROCEDURE dbo.UpdateAnnouncement
+    @Id            INT,
+    @Title         NVARCHAR(200),
+    @Description   NVARCHAR(MAX),
+    @Status        BIT,
+    @CategoryId    INT,
+    @SubCategoryId INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE dbo.Announcements
+    SET
+        Title         = @Title,
+        Description   = @Description,
+        Status        = @Status,
+        CategoryId    = @CategoryId,
+        SubCategoryId = @SubCategoryId
+    WHERE Id = @Id;
+END;

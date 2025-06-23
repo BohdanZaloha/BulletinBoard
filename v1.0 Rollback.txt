@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS Announcements;
+DROP TABLE IF EXISTS SubCategories;
+DROP TABLE IF EXISTS Categories;
